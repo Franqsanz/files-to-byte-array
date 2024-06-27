@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convert files to ArrayBuffer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        margin-bottom: 30px;
+      }
+
+      section {
+        width: 800px;
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+
+      .drop-area {
+        border: 2px dashed #727272;
+        padding: 100px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .drop-area.dragover {
+        border-color: #000;
+      }
+
+      #copyButton {
+        margin-bottom: 20px;
+      }
+
+      .viewBuffer {
+        overflow: auto;
+        margin-bottom: 50px;
+      }
+
+      .byteArrayOutput {
+        margin-top: 20px;
+        width: 800px;
+        max-height: 500px;
+        white-space: pre-wrap;
+      }
+
+      /* footer {
+        margin-top: 80px;
+        height: 100px;
+        background: gray;
+      } */
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>Convert files to ArrayBuffer</h1>
+      <input type="file" id="fileInput" multiple />
+      <div id="dropArea" class="drop-area">Drag & Drop Images Here</div>
+      <button id="copyButton" disabled>Copy</button>
+      <div class="viewBuffer">
+        <pre class="byteArrayOutput"></pre>
+      </div>
+    </section>
+    <!-- <footer></footer> -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const fileInput = document.getElementById('fileInput');
+        const dropArea = document.getElementById('dropArea');
+        const pre = document.querySelector('.byteArrayOutput');
+        const copyButton = document.querySelector('#copyButton');
+
+        fileInput.addEventListener('change', handleFiles);
+        dropArea.addEventListener('dragover', handleDragOver);
+        dropArea.addEventListener('drop', handleDrop);
+        copyButton.addEventListener('click', copyToClipboard);
+
+        function handleFiles(event) {
+          const files = event.target.files;
+          processFiles(files);
+        }
+
+        function handleDragOver(event) {
+          event.preventDefault();
+          dropArea.classList.add('dragover');
+        }
+
+        function handleDrop(event) {
+          event.preventDefault();
+          dropArea.classList.remove('dragover');
+          const files = event.dataTransfer.files;
+          processFiles(files);
+        }
+
+        function processFiles(files) {
+          for (const file of files) {
+            // if (!file.type.startsWith('image/')) continue;
+
+            const reader = new FileReader();
+
+            reader.onload = () => {
+              const arrayBuffer = reader.result;
+
+              // Convert ArrayBuffer to Uint8Array
+              const byteArray = new Uint8Array(arrayBuffer);
+
+              // console.log('ByteArray:', [...byteArray]);
+
+              const byteArrayString = formatByteArray(byteArray);
+              // const byte = formatByteArray([...byteArray]);
+
+              pre.textContent = byteArrayString;
+
+              if (byteArrayString) {
+                copyButton.disabled = false;
+              }
+            };
+
+            reader.readAsArrayBuffer(file);
+          }
+        }
+
+        function formatByteArray(byteArray) {
+          return byteArray.join(', ');
+        }
+
+        function copyToClipboard() {
+          const text = pre.textContent;
+
+          navigator.clipboard.writeText(text).then(
+            () => {
+              alert('Copied to clipboard!');
+            },
+            () => {
+              alert('Failed to copy');
+            }
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
