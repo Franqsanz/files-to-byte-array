@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Convert files to ArrayBuffer</title>
+    <title>Files to Byte Array</title>
     <style>
       * {
         margin: 0;
@@ -56,7 +56,7 @@
   </head>
   <body>
     <section>
-      <h1>Convert files to ArrayBuffer</h1>
+      <h1>Files to ArrayBuffer</h1>
       <input type="file" id="fileInput" multiple />
       <div id="dropArea" class="drop-area">Drag & Drop Images Here</div>
       <button id="copyButton" disabled>Copy</button>
@@ -105,9 +105,6 @@
 
               // Convert ArrayBuffer to Uint8Array
               const byteArray = new Uint8Array(arrayBuffer);
-
-              // console.log('ByteArray:', [...byteArray]);
-
               const byteArrayString = formatByteArray(byteArray);
               // const byte = formatByteArray([...byteArray]);
 
@@ -123,7 +120,7 @@
         }
 
         function formatByteArray(byteArray) {
-          return byteArray.join(', ');
+          return `[${byteArray.join(', ')}]`;
         }
 
         function copyToClipboard() {
