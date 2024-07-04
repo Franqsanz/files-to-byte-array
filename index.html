@@ -14,9 +14,18 @@
       }
 
       section {
-        width: 800px;
+        width: 100%;
+        max-width: 800px;
         margin: 0 auto;
         margin-top: 70px;
+      }
+
+      @media (max-width: 800px) {
+        section {
+          width: 100%;
+          padding-left: 5px;
+          padding-right: 10px;
+        }
       }
 
       h1 {
@@ -36,7 +45,7 @@
 
       .drop-area {
         border: 2px dashed #727272;
-        padding: 150px;
+        padding: 100px;
         text-align: center;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -75,7 +84,8 @@
         margin-top: 20px;
         width: 800px;
         max-height: 500px;
-        white-space: pre-wrap;
+        white-space: wrap;
+        word-wrap: break-word;
         font-family: monospace;
       }
 
@@ -172,30 +182,34 @@
         }
 
         function processFiles(files) {
+          const readers = [];
+
           loading.style.display = 'block';
           pre.textContent = '';
           copyButton.disabled = true;
 
-          const readers = [];
-
           for (const file of files) {
             const reader = new FileReader();
 
-            readers.push(
-              new Promise((resolve) => {
-                reader.onload = () => {
-                  const arrayBuffer = reader.result;
+            const promise = new Promise((resolve) => {
+              reader.onload = () => {
+                const arrayBuffer = reader.result;
+                const blob = new Blob([arrayBuffer]);
 
+                // Convert Blob to ArrayBuffer
+                blob.arrayBuffer().then((newArrayBuffer) => {
                   // Convert ArrayBuffer to Uint8Array
-                  const byteArray = new Uint8Array(arrayBuffer);
+                  const byteArray = [...new Uint8Array(newArrayBuffer)];
                   const byteArrayString = formatByteArray(byteArray);
-                  pre.textContent += byteArrayString;
-                  resolve();
-                };
-              })
-            );
+                  pre.textContent = byteArrayString;
 
-            reader.readAsArrayBuffer(file);
+                  resolve();
+                });
+              };
+              reader.readAsArrayBuffer(file);
+            });
+
+            readers.push(promise);
           }
 
           Promise.all(readers).then(() => {
@@ -205,7 +219,7 @@
         }
 
         function formatByteArray(byteArray) {
-          return `[${byteArray.join(', ')}]`;
+          return `[${byteArray}]`;
         }
 
         function copyToClipboard() {
