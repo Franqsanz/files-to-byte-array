@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Londrina Solid', sans-serif;
+}
+
+section {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: 70px;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+h1 {
+  font-size: 45px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+#fileInput {
+  font-size: 16px;
+}
+
+.drop-area {
+  border: 2px dashed #727272;
+  padding: 100px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.drop-area.dragover {
+  border-color: #000;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: center;
+}
+
+.loading {
+  display: none;
+  width: 200px;
+  font-size: 30px;
+  text-align: center;
+  margin: 0 auto;
+  color: red;
+}
+
+#copyButton,
+#cancelButton {
+  width: 90px;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.viewBuffer {
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.byteArrayOutput {
+  max-height: 200px;
+  overflow: auto;
+  padding: 15px;
+  white-space: wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  background: #e7e7e7;
+}
+
+.modalContent {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(48, 48, 48, 0.73);
+  display: none;
+}
+
+.headerModal {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  height: 350px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* .imageContent {
+  display: flex;
+  justify-content: center;
+} */
+
+/* img {
+  width: 100%;
+  max-width: 200px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto;
+  margin-bottom: 20px;
+} */
+
+/* footer {
+  margin-top: 80px;
+  height: 100px;
+  background: gray;
+} */
+
+@media (min-width: 1440px) {
+  section {
+    max-width: 600px;
+  }
+
+  .modal {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    max-width: 800px;
+  }
+
+  .loading {
+    width: 800px;
+  }
+
+  .modal {
+    max-width: 400px;
+  }
+}
+
+/* @media (min-width: 768px) {
+  section {
+    max-width: 500px;
+  }
+
+  .loading {
+    width: 800px;
+  }
+
+  .modal {
+    max-width: 200px;
+  }
+} */
