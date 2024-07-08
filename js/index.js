@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   copyButton.addEventListener('click', copyToClipboard);
   cancelButton.addEventListener('click', () => {
     modalContent.style.display = 'none';
+    fileInput.value = '';
   });
 
   function handleFiles(event) {

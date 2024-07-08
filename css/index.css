@@ -37,17 +37,11 @@ p {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 20px;
+  border-radius: 10px;
 }
 
 .drop-area.dragover {
   border-color: #000;
-}
-
-.container {
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  align-items: center;
 }
 
 .loading {
@@ -57,28 +51,6 @@ p {
   text-align: center;
   margin: 0 auto;
   color: red;
-}
-
-#copyButton,
-#cancelButton {
-  width: 90px;
-  padding: 5px;
-  font-size: 18px;
-}
-
-.viewBuffer {
-  overflow: auto;
-  margin-bottom: 30px;
-}
-
-.byteArrayOutput {
-  max-height: 200px;
-  overflow: auto;
-  padding: 15px;
-  white-space: wrap;
-  word-wrap: break-word;
-  font-family: monospace;
-  background: #e7e7e7;
 }
 
 .modalContent {
@@ -109,6 +81,41 @@ p {
   height: 350px;
   padding: 20px;
   background: #ffffff;
+  border-radius: 10px;
+}
+
+#copyButton,
+#cancelButton {
+  width: 90px;
+  padding: 5px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.viewBuffer {
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.byteArrayOutput {
+  max-height: 200px;
+  overflow: auto;
+  padding: 15px;
+  white-space: wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  background: #e7e7e7;
+  border-radius: 10px;
+}
+
+.containerBtns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: center;
 }
 
 /* .imageContent {
