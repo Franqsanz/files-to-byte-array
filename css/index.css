@@ -26,6 +26,16 @@ p {
   font-weight: 300;
 }
 
+.warning {
+  display: block;
+  border: 2px solid #efa002;
+  background: rgba(224, 147, 3, 0.201);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 #fileInput {
   font-size: 16px;
 }
@@ -84,17 +94,6 @@ p {
   border-radius: 10px;
 }
 
-#copyButton,
-#cancelButton {
-  width: 90px;
-  padding: 5px;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
 .viewBuffer {
   overflow: auto;
   margin-bottom: 30px;
@@ -116,6 +115,17 @@ p {
   justify-content: flex-end;
   gap: 20px;
   align-items: center;
+}
+
+#copyButton,
+#cancelButton {
+  width: 90px;
+  padding: 5px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* .imageContent {
@@ -149,6 +159,10 @@ p {
 }
 
 @media (min-width: 1024px) {
+  .warning {
+    display: none;
+  }
+
   section {
     max-width: 800px;
   }
@@ -165,13 +179,13 @@ p {
 /* @media (min-width: 768px) {
   section {
     max-width: 500px;
-  }
-
-  .loading {
-    width: 800px;
+    }
+    
+    .loading {
+      width: 800px;
   }
 
   .modal {
     max-width: 200px;
-  }
+    }
 } */

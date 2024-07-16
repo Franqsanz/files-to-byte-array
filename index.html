@@ -49,8 +49,16 @@
     </header>
     <section>
       <h1>Files to Byte Array</h1>
-      <p>Tool to convert files in ArrayBuffer.</p>
-      <input type="file" id="fileInput" />
+      <!-- <p>Tool to convert files in ArrayBuffer.</p> -->
+      <p>
+        With this tool you can convert all types of files such as images, gifs,
+        PDF and Word to `ArrayBuffer`. Videos and audios are not accepted at the
+        moment.
+      </p>
+      <div class="warning">
+        It is recommended to do the conversions from a PC.
+      </div>
+      <input type="file" id="fileInput" accept="image/*,.pdf,.doc,.docx" />
       <div id="dropArea" class="drop-area">Drag & Drop Files Here</div>
       <div class="loading" id="loading">Converting...</div>
     </section>

@@ -36,11 +36,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function processFiles(files) {
     const readers = [];
-
+    const allowedTypes = [
+      'image/jpeg', // JPEG
+      'image/png', // PNG
+      'image/gif', // GIF
+      'image/bmp', // BMP
+      'image/webp', // WebP
+      'image/tiff', // TIFF
+      'image/svg+xml', // SVG
+      'image/x-icon', // ICO
+      'image/heif', // HEIF
+      'image/heic', // HEIC
+      'application/pdf', // PDF
+      'application/msword', // MS Word
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // DOCX
+    ];
     loading.style.display = 'block';
     pre.textContent = '';
 
     for (const file of files) {
+      if (!allowedTypes.includes(file.type)) {
+        alert(`The file is not an accepted type.`);
+        fileInput.value = '';
+
+        continue;
+      }
+
       const reader = new FileReader();
 
       const promise = new Promise((resolve) => {
